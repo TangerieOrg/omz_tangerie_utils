@@ -1,0 +1,5 @@
+if [ $# -ne 2 ]; then
+    echo "Usage: $funcstack[1] <start> <end>"
+    return 1
+fi
+history | sed -n "${1#-},$2p"

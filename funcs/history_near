@@ -1,0 +1,14 @@
+default_size="10"
+if [ $# -lt 1 ]; then
+    echo "Usage: $funcstack[1] <target> <range = $default_size>"
+    return 1
+fi
+if [ $# -gt 2 ]; then
+    echo "Usage: $funcstack[1] <target> <range = $default_size>"
+    return 1
+fi
+local size=${2-$default_size}
+
+local start=$(expr $1 - $size)
+local end=$(expr $1 + $size)
+history_range $start $end
