@@ -1,4 +1,3 @@
-set -x
 __omz_tangerie_utils="${0:a:h}"
 
 fpath+=($__omz_tangerie_utils/funcs)
@@ -9,13 +8,13 @@ function tangerie::reload() {
 
     local fs=($__omz_tangerie_utils/funcs/*(:t))
     unfunction $fs &> /dev/null
-    autoload -Utz $fs
+    autoload -Uz $fs
 }
 
 function tangerie::update() {
-    builtin cd "$__omz_tangerie_utils"
+    pushd -q "$__omz_tangerie_utils"
     git pull
-    cd $OLDPWD
+    popd -q
 }
 
 tangerie::reload

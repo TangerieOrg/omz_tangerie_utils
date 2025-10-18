@@ -1,3 +1,4 @@
+emulate -L zsh
 which nvm &>/dev/null && return
 
 NVM_DIR=${NVM_DIR:-"$HOME/.nvm"}

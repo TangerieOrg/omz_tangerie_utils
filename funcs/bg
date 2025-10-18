@@ -1,0 +1,1 @@
+screen -m -S $0 -OLd $@
