@@ -36,7 +36,10 @@ function _lazy_nvm_load {
     unfunction _lazy_nvm_load
     
     . "$NVM_DIR/nvm.sh"
+    nvm use --silent &> /dev/null
     
+    echo Using node $(node -v)
+
     # Load nvm bash completion
     for _nvm_completion in "$NVM_DIR/bash_completion" "$NVM_HOMEBREW/etc/bash_completion.d/nvm"; do
         if [[ -f "$_nvm_completion" ]]; then
