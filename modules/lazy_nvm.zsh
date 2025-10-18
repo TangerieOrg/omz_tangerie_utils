@@ -4,16 +4,16 @@ NVM_DIR=${NVM_DIR:-"$HOME/.nvm"}
 
 [ ! -d "$NVM_DIR" ] && return
 
-_lazy_nvm_commands=()
-
-{
 local _nvm_commands=($NVM_DIR/versions/node/*/bin/*(r:t))
 _nvm_commands=(${(u)_nvm_commands})
 
+_lazy_nvm_commands=(nvm)
 for ex in $_nvm_commands; do
     [[ ${commands[(Ie)$ex]} ]] || _lazy_nvm_commands+=($ex)
 done
-}
+
+unset _nvm_commands
+
 
 function _lazy_nvm_load {
     local _nvm_completion
@@ -49,12 +49,10 @@ function _lazy_nvm_load {
     done
 }
 
-function nvm {
-    _lazy_nvm_load
-    nvm $@
-}
 
 eval "function $_lazy_nvm_commands { 
     _lazy_nvm_load
     \$0 \$@
 }"
+
+shift _lazy_nvm_commands
